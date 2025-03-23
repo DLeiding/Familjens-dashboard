@@ -19,6 +19,22 @@
             align-items: center;
             min-height: 100vh;
         }
+        body[data-bg="1"] {
+            background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') no-repeat center center fixed;
+            background-size: cover;
+        }
+        body[data-bg="2"] {
+            background: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0') no-repeat center center fixed;
+            background-size: cover;
+        }
+        body[data-bg="3"] {
+            background: url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e') no-repeat center center fixed;
+            background-size: cover;
+        }
+        body[data-bg="4"] {
+            background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb') no-repeat center center fixed;
+            background-size: cover;
+        }
         .container {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(15px);
@@ -34,22 +50,6 @@
             background: rgba(255, 255, 255, 0.1);
             padding: 30px;
             border-radius: 25px;
-            opacity: 0;
-            animation: fadeInFromBottom 1s ease-out forwards;
-        }
-        .widget:nth-child(1) { animation-delay: 0.2s; }
-        .widget:nth-child(2) { animation-delay: 0.4s; }
-        .widget:nth-child(3) { animation-delay: 0.6s; }
-        .widget:nth-child(4) { animation-delay: 0.8s; }
-        @keyframes fadeInFromBottom {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
         .top-widgets {
             display: flex;
@@ -99,6 +99,7 @@
         .news {
             overflow: hidden;
             white-space: nowrap;
+            width: 100%;
         }
         .news-content {
             display: inline-block;
@@ -108,37 +109,16 @@
             from { transform: translateX(100%); }
             to { transform: translateX(-100%); }
         }
-        .todo-input {
-            width: 100%;
-            padding: 8px;
-            margin-top: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
         @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
-            .widget {
-                padding: 20px;
-            }
-            .calendar-iframe {
-                height: 500px;
-            }
-            .forecast-day {
-                width: 80px;
-                padding: 8px;
-            }
-            #clock, #date {
-                font-size: 1.5em;
-            }
-            #countdown {
-                font-size: 1.2em;
+            .news-content {
+                animation: none;
+                white-space: normal;
+                display: block;
             }
         }
     </style>
 </head>
-<body>
+<body data-bg="1">
     <div class="container">
         <h2 id="welcome-message" style="font-family: 'Playfair Display', serif; font-size: 2.2em; text-align: center; margin-bottom: 20px; color: black; text-shadow: 0 0 0 rgba(0,0,0,0);"></h2>
         <h1 style="text-align: center;">Leiding / Nilsson</h1>
@@ -158,11 +138,6 @@
                 <h2>Spanien</h2>
                 <p id="countdown">Laddar...</p>
             </div>
-            <div class="widget" style="flex: 1; min-width: 300px;">
-                <h2>Att göra</h2>
-                <ul id="todo-list" style="list-style: none; padding-left: 0;"></ul>
-                <input type="text" id="new-task" class="todo-input" placeholder="Lägg till ny uppgift...">
-            </div>
         </div>
         <div class="widget calendar-container">
             <h2>Kalender</h2>
@@ -173,7 +148,6 @@
             <div class="news" id="news"><div class="news-content">Laddar nyheter...</div></div>
         </div>
     </div>
-
 <script>
 // Klocka och datum
 function updateClock() {
@@ -265,18 +239,15 @@ function updateWelcomeMessage() {
 }
 updateWelcomeMessage();
 
-// Att göra-lista
-const todoList = document.getElementById("todo-list");
-const newTaskInput = document.getElementById("new-task");
-
-newTaskInput.addEventListener("keypress", function(e) {
-    if (e.key === "Enter" && newTaskInput.value.trim() !== "") {
-        const li = document.createElement("li");
-        li.innerHTML = `<label><input type="checkbox"> ${newTaskInput.value}</label>`;
-        todoList.appendChild(li);
-        newTaskInput.value = "";
-    }
-});
+// Bakgrundsbilder
+let currentBg = 1;
+function changeBackground() {
+    currentBg++;
+    if (currentBg > 4) currentBg = 1;
+    document.body.setAttribute("data-bg", currentBg);
+}
+setInterval(changeBackground, 20000);
 </script>
 </body>
 </html>
+
