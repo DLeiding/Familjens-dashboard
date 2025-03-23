@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Familjens Dashboard</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@400;700&family=Playfair+Display&display=swap');
+        body {
+            transition: background 1s ease-in-out;
+            margin: 10px;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') no-repeat center center fixed;
+            background-size: cover;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 30px;
+            width: 90%;
+            max-width: 1100px;
+            box-shadow: none;
+        }
+        .widget {
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 25px;
+            opacity: 0;
+            animation: fadeInFromBottom 1s ease-out forwards;
+        }
+        .widget:nth-child(1) { animation-delay: 0.2s; }
+        .widget:nth-child(2) { animation-delay: 0.4s; }
+        .widget:nth-child(3) { animation-delay: 0.6s; }
+        .widget:nth-child(4) { animation-delay: 0.8s; }
+        @keyframes fadeInFromBottom {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .top-widgets {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .calendar-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .calendar-iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 15px;
+            filter: drop-shadow(0 0 15px rgba(0,0,0,0.5));
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        h1, h2 {
+            margin: 10px 0;
+        }
+        p {
+            font-size: 1.3em;
+        }
+        .weather-forecast {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .forecast-day {
+            margin: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 12px;
+            width: 110px;
+            text-align: center;
+        }
+        #clock, #date {
+            font-size: 2em;
+            margin: 10px 0;
+        }
+        #countdown {
+            font-size: 1.5em;
+        }
+        .news {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .news-content {
+            display: inline-block;
+            animation: scroll-left 40s linear infinite;
+        }
+        @keyframes scroll-left {
+            from { transform: translateX(100%); }
+            to { transform: translateX(-100%); }
+        }
+        @media (max-width: 768px) {
+            .container { padding: 20px; }
+            .widget { padding: 20px; }
+            .calendar-iframe { height: 500px; }
+            .forecast-day { width: 80px; padding: 8px; }
+            #clock, #date { font-size: 1.5em; }
+            #countdown { font-size: 1.2em; }
+        }
+    </style>
+</head>
+<body>
+    <!-- HTML content truncated for brevity -->
+</body>
+</html>
