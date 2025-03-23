@@ -108,7 +108,13 @@
             from { transform: translateX(100%); }
             to { transform: translateX(-100%); }
         }
-
+        .todo-input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
         @media (max-width: 768px) {
             .container {
                 padding: 20px;
@@ -154,11 +160,8 @@
             </div>
             <div class="widget" style="flex: 1; min-width: 300px;">
                 <h2>Att göra</h2>
-                <ul>
-                    <li>Maximilian Läxa</li>
-                    <li></li>
-                    <li></li>
-                </ul>
+                <ul id="todo-list" style="list-style: none; padding-left: 0;"></ul>
+                <input type="text" id="new-task" class="todo-input" placeholder="Lägg till ny uppgift...">
             </div>
         </div>
         <div class="widget calendar-container">
@@ -262,14 +265,18 @@ function updateWelcomeMessage() {
 }
 updateWelcomeMessage();
 
-// Bakgrundsbilder
-let currentBg = 1;
-function changeBackground() {
-    currentBg++;
-    if (currentBg > 5) currentBg = 1;
-    document.body.setAttribute("data-bg", currentBg);
-}
-setInterval(changeBackground, 20000);
+// Att göra-lista
+const todoList = document.getElementById("todo-list");
+const newTaskInput = document.getElementById("new-task");
+
+newTaskInput.addEventListener("keypress", function(e) {
+    if (e.key === "Enter" && newTaskInput.value.trim() !== "") {
+        const li = document.createElement("li");
+        li.innerHTML = `<label><input type="checkbox"> ${newTaskInput.value}</label>`;
+        todoList.appendChild(li);
+        newTaskInput.value = "";
+    }
+});
 </script>
 </body>
 </html>
