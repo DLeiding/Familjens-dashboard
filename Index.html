@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Familjens Dashboard</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@400;700&family=Playfair+Display&display=swap');
+        body {
+            transition: background 1s ease-in-out;
+            margin: 10px;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') no-repeat center center fixed;
+            background-size: cover;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 30px;
+            width: 90%;
+            max-width: 1100px;
+            box-shadow: none;
+        }
+        .widget {
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 25px;
+            opacity: 0;
+            animation: fadeInFromBottom 1s ease-out forwards;
+        }
+        .widget:nth-child(1) { animation-delay: 0.2s; }
+        .widget:nth-child(2) { animation-delay: 0.4s; }
+        .widget:nth-child(3) { animation-delay: 0.6s; }
+        .widget:nth-child(4) { animation-delay: 0.8s; }
+        @keyframes fadeInFromBottom {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .top-widgets {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .calendar-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .calendar-iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 15px;
+            filter: drop-shadow(0 0 15px rgba(0,0,0,0.5));
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        h1, h2 {
+            margin: 10px 0;
+        }
+        p {
+            font-size: 1.3em;
+        }
+        .weather-forecast {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .forecast-day {
+            margin: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 12px;
+            width: 110px;
+            text-align: center;
+        }
+        #clock, #date {
+            font-size: 2em;
+            margin: 10px 0;
+        }
+        #countdown {
+            font-size: 1.5em;
+        }
+        .news {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .news-content {
+            display: inline-block;
+            animation: scroll-left 40s linear infinite;
+        }
+        @keyframes scroll-left {
+            from { transform: translateX(100%); }
+            to { transform: translateX(-100%); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            .widget {
+                padding: 20px;
+            }
+            .calendar-iframe {
+                height: 500px;
+            }
+            .forecast-day {
+                width: 80px;
+                padding: 8px;
+            }
+            #clock, #date {
+                font-size: 1.5em;
+            }
+            #countdown {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 id="welcome-message" style="font-family: 'Playfair Display', serif; font-size: 2.2em; text-align: center; margin-bottom: 20px; color: black; text-shadow: 0 0 0 rgba(0,0,0,0);"></h2>
+        <h1 style="text-align: center;">Leiding / Nilsson</h1>
+        <div class="top-widgets">
+            <div class="widget" style="flex: 1; min-width: 300px;">
+                <h2>Klocka & Datum</h2>
+                <p id="clock">Laddar tid...</p>
+                <p id="date">Laddar datum...</p>
+            </div>
+            <div class="widget" style="flex: 1; min-width: 300px;">
+                <h2>Väder (3 dagar - Malmköping)</h2>
+                <div class="weather-forecast" id="forecast">Laddar väder...</div>
+            </div>
+        </div>
+        <div class="top-widgets">
+            <div class="widget" style="flex: 1; min-width: 300px;">
+                <h2>Spanien</h2>
+                <p id="countdown">Laddar...</p>
+            </div>
+            <div class="widget" style="flex: 1; min-width: 300px;">
+                <h2>Att göra</h2>
+                <ul>
+                    <li>Handla</li>
+                    <li>Tvätta</li>
+                    <li>Boka tandläkartid</li>
+                </ul>
+            </div>
+        </div>
+        <div class="widget calendar-container">
+            <h2>Kalender</h2>
+            <iframe class="calendar-iframe" src="https://calendar.google.com/calendar/embed?src=ad91c4e3564b7bb204982dc8609c5072d822c917edf6bb6a2398f3bb711ffa54@group.calendar.google.com&src=0f3167ad3226259bfd6e201077a8989fbd70419e44fb024a9230d9e20983cbfd@group.calendar.google.com&src=family03354164418688114432@group.calendar.google.com&src=leiding.nilsson@gmail.com&mode=MONTH&showTitle=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0&ctz=Europe/Stockholm"></iframe>
+        </div>
+        <div class="widget">
+            <h2>Nyheter - Södermanland</h2>
+            <div class="news" id="news"><div class="news-content">Laddar nyheter...</div></div>
+        </div>
+    </div>
+
+<script>
+// Klocka och datum
+function updateClock() {
+    const now = new Date();
+    document.getElementById("clock").innerText = now.toLocaleTimeString("sv-SE", { hour: "2-digit", minute: "2-digit" });
+    document.getElementById("date").innerText = now.toLocaleDateString("sv-SE", { weekday: "long", day: "numeric", month: "long" });
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// Nedräkning
+const targetDate = new Date("2025-06-03T00:00:00");
+function updateCountdown() {
+    const now = new Date();
+    const diff = targetDate - now;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    document.getElementById("countdown").innerText = `${days} dagar ${hours} timmar ${minutes} minuter kvar!`;
+}
+setInterval(updateCountdown, 60000);
+updateCountdown();
+
+// SMHI väder (3 dagar för Malmköping)
+const lat = 59.0493;
+const lon = 16.7229;
+const smhiUrl = `https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/${lon}/lat/${lat}/data.json`;
+
+fetch(smhiUrl)
+    .then(response => response.json())
+    .then(data => {
+        const forecastContainer = document.getElementById("forecast");
+        forecastContainer.innerHTML = "";
+
+        const daysShown = {};
+        let daysCount = 0;
+
+        data.timeSeries.forEach(item => {
+            const date = new Date(item.validTime);
+            const dayKey = date.toLocaleDateString("sv-SE", { weekday: "short", day: "numeric" });
+            const temp = item.parameters.find(p => p.name === "t").values[0];
+            const symbol = item.parameters.find(p => p.name === "Wsymb2").values[0];
+
+            let icon = "☀️";
+            if (symbol >= 3 && symbol <= 4) icon = "🌤️";
+            else if (symbol >= 5 && symbol <= 6) icon = "☁️";
+            else if (symbol >= 7 && symbol <= 9) icon = "🌧️";
+            else if (symbol >= 10) icon = "❄️";
+
+            if (!daysShown[dayKey] && date.getHours() === 12) {
+                daysShown[dayKey] = true;
+                const div = document.createElement("div");
+                div.className = "forecast-day";
+                div.innerHTML = `<strong>${dayKey}</strong><br>${icon}<br>${temp}°C`;
+                forecastContainer.appendChild(div);
+                daysCount++;
+            }
+            if (daysCount >= 3) return;
+        });
+    })
+    .catch(() => {
+        document.getElementById("forecast").innerText = "Kunde inte hämta vädret";
+    });
+
+// Nyheter
+const rssUrl = `https://www.svt.se/nyheter/lokalt/sormland/rss.xml`;
+fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`)
+    .then(response => response.json())
+    .then(data => {
+        const newsContent = document.querySelector(".news-content");
+        newsContent.innerHTML = "";
+        data.items.slice(0, 5).forEach(item => {
+            newsContent.innerHTML += `<strong>${item.title}</strong> &nbsp;&nbsp;&nbsp;`;
+        });
+    })
+    .catch(() => {
+        document.querySelector(".news-content").innerText = "Kunde inte ladda nyheter";
+    });
+
+// Välkomstmeddelande
+function updateWelcomeMessage() {
+    const now = new Date();
+    const hour = now.getHours();
+    let greeting = "Välkommen!";
+    if (hour < 12) greeting = "God morgon Leiding / Nilsson!";
+    else if (hour < 18) greeting = "God eftermiddag Leiding / Nilsson!";
+    else greeting = "God kväll Leiding / Nilsson!";
+    document.getElementById("welcome-message").innerText = greeting;
+}
+updateWelcomeMessage();
+
+// Bakgrundsbilder
+let currentBg = 1;
+function changeBackground() {
+    currentBg++;
+    if (currentBg > 5) currentBg = 1;
+    document.body.setAttribute("data-bg", currentBg);
+}
+setInterval(changeBackground, 20000);
+</script>
+</body>
+</html>
