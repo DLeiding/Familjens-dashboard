@@ -12,295 +12,432 @@
 <link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@400;700&amp;family=Playfair+Display&amp;display=swap" rel="stylesheet"/>
 <style>
    body {
-      margin:10px;
-      font-family:'Helvetica Neue',Arial,sans-serif;
-      background:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') no-repeat center center fixed;
-      background-size:cover;
-      color:black;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      min-height:100vh;
-    }
-    .container {
-      background:rgba(255,255,255,0.1);
-      backdrop-filter:blur(15px);
-      padding:30px;
-      border-radius:20px;
-      margin-top:30px;
-      width:90%;
-      max-width:1100px;
-    }
-    .tabs {
-      display:flex;
-      justify-content:center;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-bottom:20px;
-    }
-    .tab-btn {
-      background:rgba(255,255,255,0.2);
-      border:none;
-      padding:10px 20px;
-      border-radius:10px;
-      cursor:pointer;
-      font-weight:bold;
-      transition:background 0.3s;
-    }
-    .tab-btn.active {
-      background:rgba(255,255,255,0.4);
-    }
-    .tab-content {
-      display:none;
-      animation:fadeIn 0.5s forwards;
-    }
-    .tab-content.active {
-      display:block;
-    }
-    .widget {
-      margin:20px 0;
-      background:rgba(255,255,255,0.1);
-      padding:20px;
-      border-radius:20px;
-    }
-    .top-widgets {
-      display:flex;
-      justify-content:center;
-      gap:20px;
-      flex-wrap:wrap;
-    }
-    .calendar-iframe {
-      width:100%;
-      height:600px;
-      border:none;
-      border-radius:15px;
-      filter:drop-shadow(0 0 15px rgba(0,0,0,0.5));
-      background-color:rgba(255,255,255,0.05);
-    }
-    .weather-forecast {
-      display:flex;
-      justify-content:space-around;
-      flex-wrap:wrap;
-    }
-    .forecast-day {
-      margin:10px;
-      background:rgba(255,255,255,0.2);
-      padding:10px;
-      border-radius:12px;
-      width:100px;
-      text-align:center;
-    }
-    #clock,#date{font-size:2em;margin:10px 0;}
-    #countdown{font-size:1.5em;}
-    .todo-input {
-      width:100%;
-      padding:8px;
-      margin-top:10px;
-      border-radius:5px;
-      border:1px solid #ccc;
-    }
-    .circle-btn {
-      width:25px;
-      height:25px;
-      margin-right:10px;
-      border-radius:50%;
-      border:2px solid black;
-      background:transparent;
-      cursor:pointer;
-    }
-    .circle-btn.checked { background:Limegreen; }
-    .chore-circle { width:30px; height:30px; }
-    li {
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      margin:5px 0;
-    }
-    .remove-btn {
-      margin-left:10px;
-      cursor:pointer;
-      color:red;
-    }
-    @keyframes scroll-left {
-      from { transform: translateX(0%); }
-      to { transform: translateX(-100%); }
-    }
-    @keyframes fadeIn {
-      from{opacity:0;transform:translateY(10px);}
-      to{opacity:1;transform:translateY(0);}
-    }
-    .news-bar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(0,0,0,0.6);
-      color: white;
-      padding: 12px;
-      font-size: 1em;
-      font-weight: bold;
-      line-height: 1.4;
-      z-index: 999;
-      overflow: hidden;
-      white-space: nowrap;
-      backdrop-filter: blur(5px);
-    }
-    .news-content {
-      display: inline-block;
-      padding-left: 100%;
-      animation: scroll-left 80s linear infinite;
-    }
-    @media(max-width:768px){
-      .container{padding:20px;}
-      .widget{padding:20px;}
-      .calendar-iframe{height:500px;}
-      .forecast-day{width:80px;padding:8px;}
-      #clock,#date{font-size:1.5em;}
-      #countdown{font-size:1.2em;}
-    }
+margin:10px;
+font-family:'Helvetica Neue',Arial,sans-serif;
+background:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') no-repeat center center fixed;
+background-size:cover;
+color:black;
+display:flex;
+flex-direction:column;
+align-items:center;
+min-height:100vh;
+}
+.container {
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(15px);
+padding:30px;
+border-radius:20px;
+margin-top:30px;
+width:90%;
+max-width:1100px;
+}
+.tabs {
+display:flex;
+justify-content:center;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:20px;
+}
+.tab-btn {
+background:rgba(255,255,255,0.2);
+border:none;
+padding:10px 20px;
+border-radius:10px;
+cursor:pointer;
+font-weight:bold;
+transition:background 0.3s;
+}
+.tab-btn.active {
+background:rgba(255,255,255,0.4);
+}
+.tab-content {
+display:none;
+animation:fadeIn 0.5s forwards;
+}
+.tab-content.active {
+display:block;
+}
+.widget {
+margin:20px 0;
+background:rgba(255,255,255,0.1);
+padding:20px;
+border-radius:20px;
+}
+.top-widgets {
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+.calendar-iframe {
+width:100%;
+height:600px;
+border:none;
+border-radius:15px;
+filter:drop-shadow(0 0 15px rgba(0,0,0,0.5));
+background-color:rgba(255,255,255,0.05);
+}
+.weather-forecast {
+display:flex;
+justify-content:space-around;
+flex-wrap:wrap;
+}
+.forecast-day {
+margin:10px;
+background:rgba(255,255,255,0.2);
+padding:10px;
+border-radius:12px;
+width:100px;
+text-align:center;
+}
+#clock,#date{font-size:2em;margin:10px 0;}
+#countdown{font-size:1.5em;}
+.todo-input {
+width:100%;
+padding:8px;
+margin-top:10px;
+border-radius:5px;
+border:1px solid #ccc;
+}
+.circle-btn {
+width:25px;
+height:25px;
+margin-right:10px;
+border-radius:50%;
+border:2px solid black;
+background:transparent;
+cursor:pointer;
+}
+.circle-btn.checked { background:Limegreen; }
+.chore-circle { width:30px; height:30px; }
+li {
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin:5px 0;
+}
+.remove-btn {
+margin-left:10px;
+cursor:pointer;
+color:red;
+}
+@keyframes scroll-left {
+from { transform: translateX(0%); }
+to { transform: translateX(-100%); }
+}
+@keyframes fadeIn {
+from{opacity:0;transform:translateY(10px);}
+to{opacity:1;transform:translateY(0);}
+}
+.news-bar {
+position: fixed;
+bottom: 0;
+left: 0;
+width: 100%;
+background: rgba(0,0,0,0.6);
+color: white;
+padding: 12px;
+font-size: 1em;
+font-weight: bold;
+line-height: 1.4;
+z-index: 999;
+overflow: hidden;
+white-space: nowrap;
+backdrop-filter: blur(5px);
+}
+.news-content {
+display: inline-block;
+padding-left: 100%;
+animation: scroll-left 80s linear infinite;
+}
+@media(max-width:768px){
+.container{padding:20px;}
+.widget{padding:20px;}
+.calendar-iframe{height:500px;}
+.forecast-day{width:80px;padding:8px;}
+#clock,#date{font-size:1.5em;}
+#countdown{font-size:1.2em;}
+}
+.agenda-columns {
+display: flex;
+gap: 30px;
+flex-wrap: wrap;
+justify-content: center;
+margin-top: 20px;
+}
+.column {
+flex: 1;
+min-width: 280px;
+background: rgba(255, 255, 255, 0.1);
+backdrop-filter: blur(12px);
+border-radius: 20px;
+padding: 15px;
+box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+transition: transform 0.3s ease;
+}
+.column:hover {
+transform: translateY(-5px);
+}
+.column h3 {
+text-align: center;
+margin-bottom: 10px;
+font-size: 1.4em;
+font-weight: bold;
+border-bottom: 1px solid rgba(255,255,255,0.2);
+padding-bottom: 8px;
+}
+.event {
+margin-bottom: 14px;
+padding: 12px 15px;
+background: rgba(255, 255, 255, 0.08);
+border-left: 4px solid #00BCD4;
+border-radius: 12px;
+}
+.event-date {
+font-weight: 600;
+font-size: 1.1em;
+margin-bottom: 4px;
+}
+.event-summary {
+font-size: 1em;
+color: #f0f0f0;
+}
+/* Removed responsiveness for fixed row layout */ {
+.agenda-columns {
+flex-direction: column;
+gap: 20px;
+padding: 0 10px;
+}
+}
+.column.emma {
+border-left: 6px solid #F5B7B1;
+}
+.column.max {
+border-left: 6px solid #85C1E9;
+}
+.column.familj {
+border-left: 6px solid #F1948A;
+}
+.agenda-columns {
+flex-wrap: nowrap;
+overflow-x: auto;
+}
+.column {
+min-width: 22%;
+margin: 0 5px;
+}
+@media (max-width: 1000px) {
+.agenda-columns {
+flex-wrap: wrap;
+}
+.column {
+min-width: 45%;
+margin-bottom: 10px;
+}
+}
+.agenda-columns {
+gap: 10px !important;
+}
+.column {
+margin: 0 2px !important;
+padding: 15px;
+}
+.tabs {
+display: flex;
+justify-content: center;
+gap: 12px;
+padding: 10px;
+background: rgba(255,255,255,0.07);
+border-radius: 20px;
+box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+margin-bottom: 30px;
+overflow-x: auto;
+}
+.tab-btn {
+padding: 10px 20px;
+border: none;
+border-radius: 999px;
+background: rgba(255,255,255,0.15);
+color: white;
+font-weight: bold;
+cursor: pointer;
+transition: background 0.3s, transform 0.2s;
+white-space: nowrap;
+}
+.tab-btn:hover {
+transform: translateY(-2px);
+}
+.tab-btn.active[data-tab="start"] { background-color: #add8e6; color: black; }
+.tab-btn.active[data-tab="calendar"] { background-color: #c3f7c3; color: black; }
+.tab-btn.active[data-tab="todo"] { background-color: #fff8b5; color: black; }
+.tab-btn.active[data-tab="chores"] { background-color: #ffd5ec; color: black; }
+.tab-btn.active[data-tab="agenda"] { background-color: #e6ccff; color: black; }
+.pollen-meter {
+display: inline-block;
+text-align: center;
+margin: 15px;
+width: 90px;
+}
+.pollen-meter svg {
+width: 70px;
+height: 70px;
+transform: rotate(-90deg);
+}
+.pollen-meter .circle-bg {
+fill: none;
+stroke: #eee;
+stroke-width: 3;
+}
+.pollen-meter .circle-level {
+fill: none;
+stroke-width: 3;
+stroke-linecap: round;
+}
+.pollen-icon {
+font-size: 1.4em;
+margin-top: -10px;
+}
+.pollen-label {
+font-weight: bold;
+margin-top: 4px;
+}
+.pollen-level {
+font-size: 0.8em;
+color: #ccc;
+}
+/* Förbättrad läsbarhet i pollen-widget */
+.pollen-label {
+color: #222 !important;
+}
+.pollen-level {
+color: #444 !important;
+}
+.pollen-icon {
+color: #222 !important;
+}
+.agenda-column {
+color: #222 !important;
+}
+.agenda-column h3 {
+color: #111 !important;
+}
+.agenda-column ul li {
+color: #333 !important;
+font-weight: 500;
+}
+/* Förbättrad textkontrast i Familjekalender (Agenda) */
+#agenda .agenda-column {
+color: #222 !important;
+}
+#agenda .agenda-column h3 {
+color: #111 !important;
+font-weight: 600;
+}
+#agenda .agenda-column ul {
+color: #222 !important;
+font-weight: 500;
+font-size: 0.95em;
+}
+#agenda .agenda-column ul li {
+color: #333 !important;
+font-weight: 500;
+}
+#agenda .agenda-column ul li strong {
+color: #222 !important;
+font-weight: 600;
+}
+
+/* Ny ljus bakgrund i modern ton */
+body {
+  background: linear-gradient(to bottom right, #f9f9f9, #e6e6e6);
+  background-attachment: fixed;
+  color: #222;
+}
+
+/* Globala textfärger */
+body, .widget, .agenda-column, .agenda-column ul li, .agenda-column h3,
+#pollen-widget, .pollen-label, .pollen-level, .pollen-icon {
+  color: #222 !important;
+}
+
+/* Giltighetsdatum och info */
+#pollen-dates, #pollen-widget small {
+  color: #555 !important;
+}
+
+/* Förbättrad widgetbakgrund för ljus miljö */
+.widget {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
   
-
-    .agenda-columns {
-      display: flex;
-      gap: 30px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 20px;
-    }
-    .column {
-      flex: 1;
-      min-width: 280px;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(12px);
-      border-radius: 20px;
-      padding: 15px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease;
-    }
-    .column:hover {
-      transform: translateY(-5px);
-    }
-    .column h3 {
-      text-align: center;
-      margin-bottom: 10px;
-      font-size: 1.4em;
-      font-weight: bold;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-      padding-bottom: 8px;
-    }
-    .event {
-      margin-bottom: 14px;
-      padding: 12px 15px;
-      background: rgba(255, 255, 255, 0.08);
-      border-left: 4px solid #00BCD4;
-      border-radius: 12px;
-    }
-    .event-date {
-      font-weight: 600;
-      font-size: 1.1em;
-      margin-bottom: 4px;
-    }
-    .event-summary {
-      font-size: 1em;
-      color: #f0f0f0;
-    }
-    /* Removed responsiveness for fixed row layout */ {
-      .agenda-columns {
-        flex-direction: column;
-        gap: 20px;
-        padding: 0 10px;
-      }
-    }
-
-        .column.emma {
-      border-left: 6px solid #F5B7B1;
-    }
-    .column.max {
-      border-left: 6px solid #85C1E9;
-    }
-    .column.familj {
-      border-left: 6px solid #F1948A;
-    }
-
-    .agenda-columns {
-      flex-wrap: nowrap;
-      overflow-x: auto;
-    }
-    .column {
-      min-width: 22%;
-      margin: 0 5px;
-    }
-    @media (max-width: 1000px) {
-      .agenda-columns {
-        flex-wrap: wrap;
-      }
-      .column {
-        min-width: 45%;
-        margin-bottom: 10px;
-      }
-    }
-
-    .agenda-columns {
-      gap: 10px !important;
-    }
-    .column {
-      margin: 0 2px !important;
-      padding: 15px;
-    }
-  
-    .tabs {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      padding: 10px;
-      background: rgba(255,255,255,0.07);
-      border-radius: 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      margin-bottom: 30px;
-      overflow-x: auto;
-    }
-    .tab-btn {
-      padding: 10px 20px;
-      border: none;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.15);
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.2s;
-      white-space: nowrap;
-    }
-    .tab-btn:hover {
-      transform: translateY(-2px);
-    }
-    .tab-btn.active[data-tab="start"] { background-color: #add8e6; color: black; }
-    .tab-btn.active[data-tab="calendar"] { background-color: #c3f7c3; color: black; }
-    .tab-btn.active[data-tab="todo"] { background-color: #fff8b5; color: black; }
-    .tab-btn.active[data-tab="chores"] { background-color: #ffd5ec; color: black; }
-    .tab-btn.active[data-tab="agenda"] { background-color: #e6ccff; color: black; }
+/* Ikonmeny-stil */
+.menu {
+  display: flex;
+  justify-content: space-around;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  z-index: 999;
+  padding: 0.5rem 0;
+}
+.tab-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+  background: none;
+  padding: 0.4rem 0.6rem;
+  border-radius: 12px;
+  color: #444;
+  font-size: 0.75rem;
+  transition: background 0.3s, color 0.3s;
+  cursor: pointer;
+}
+.tab-button i {
+  width: 22px;
+  height: 22px;
+  margin-bottom: 4px;
+}
+.tab-button.active {
+  background: var(--active-color);
+  color: #111;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.tab-button:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: #222;
+}
 </style>
 </head>
 <body>
+<nav class="menu">
+<button class="tab-button active" data-tab="start" style="--active-color: #e9f0ff;">
+<i data-lucide="home"></i><span>Start</span>
+</button>
+<button class="tab-button" data-tab="calendar" style="--active-color: #e6fff3;">
+<i data-lucide="calendar-days"></i><span>Kalendern</span>
+</button>
+<button class="tab-button" data-tab="todo" style="--active-color: #fff1f3;">
+<i data-lucide="check-square"></i><span>Att Göra</span>
+</button>
+<button class="tab-button" data-tab="chores" style="--active-color: #ebfbe3;">
+<i data-lucide="broom"></i><span>Sysslor</span>
+</button>
+<button class="tab-button" data-tab="agenda" style="--active-color: #fdf4e3;">
+<i data-lucide="list-todo"></i><span>Agenda</span>
+</button>
+</nav>
 <div class="container">
 <h2 id="welcome-message" style="font-family:'Playfair Display',serif;text-align:center;margin-bottom:20px;font-size:2em;">
 </h2>
-<div class="tabs">
-<button class="tab-btn active" data-tab="start">
-     Start
-    </button>
-<button class="tab-btn" data-tab="calendar">
-     Kalender
-    </button>
-<button class="tab-btn" data-tab="todo">
-     Att göra
-    </button>
-<button class="tab-btn" data-tab="chores">
-     Sysslor
-    </button>
-<button class="tab-btn" data-tab="agenda">
-     Agenda
-    </button>
-</div>
 <div class="tab-content active" id="start">
 <div class="top-widgets">
 <div class="widget" style="flex:1;min-width:280px; border-left: 6px solid #add8e6; background: rgba(255,255,255,0.05);">
@@ -321,16 +458,21 @@
       </div>
 </div>
 </div>
-<div class="widget" style="background: rgba(255,255,255,0.1); border-left: 6px solid #FFB6C1;">
-<h2>Pollenprognos – Södermanland</h2>
-<div style="display: flex; align-items: center; gap: 15px;">
-<img alt="Björk" height="50" src="https://pollenkoll.se/wp-content/themes/pollenkoll/images/icon-bjork.svg" width="50"/>
-<div>
-<strong>Björk:</strong> Höga halter väntas.<br/>
-<strong>Al:</strong> Måttliga halter.<br/>
-<strong>Hassel:</strong> Låga halter.
-    </div>
-</div>
+<div class="widget" id="pollen-widget" style="border-left: 6px solid #FFB6C1;">
+<h2>
+      Pollenprognos – Eskilstuna
+     </h2>
+<div id="pollen-dates" style="font-size: 0.9em; color: #444; margin-top: -10px; margin-bottom: 10px;">
+      Gäller: laddar datum...
+     </div>
+<div id="pollen-content">
+      Hämtar pollenprognos från API...
+     </div>
+<small id="pollen-timestamp" style="display:block; margin-top:10px; color:#ccc;">
+</small>
+<div style="font-size: 0.75em; color: #666; margin-top: 8px;">
+      Uppdateras automatiskt när ny prognos finns tillgänglig.
+     </div>
 </div>
 <div class="widget" style="border-left: 6px solid #add8e6; background: rgba(255,255,255,0.05);">
 <h2>
@@ -368,39 +510,26 @@
 </div>
 </div>
 </div>
-<div class="tab-content" id="agenda">
-<div class="widget" style="border-left: 6px solid #e6ccff; background: rgba(255,255,255,0.05);">
-<h2>
-      Familjekalender (Agenda)
-     </h2>
-<div class="agenda-columns">
-<div class="column emma">
-<h3>
-        Emma
-       </h3>
-<div id="emma-events">
-        Laddar...
-       </div>
+<div class="tab-content" id="agenda"><div id="agenda-widget-container">
+<h2 style="text-align:center;">Familjekalender – Agenda (3+3)</h2>
+<div class="agenda-grid">
+<div class="agenda-column" id="emma" style="background-color:#ffeedb;"><h3>Emma</h3></div>
+<div class="agenda-column" id="maximilian" style="background-color:#e3fdd9;"><h3>Maximilian</h3></div>
+<div class="agenda-column" id="familj" style="background-color:#ffe5e0;"><h3>Familj</h3></div>
 </div>
-<div class="column max">
-<h3>
-        Maximilian
-       </h3>
-<div id="max-events">
-        Laddar...
-       </div>
+<div class="agenda-grid" style="margin-top:1rem;">
+<div class="agenda-column" id="dennis" style="background-color:#e0f0ff;"><h3>Dennis</h3></div>
+<div class="agenda-column" id="milou" style="background-color:#ffd8e6;"><h3>Milou</h3></div>
+<div class="agenda-column" id="molly" style="background-color:#f1e5ff;"><h3>Molly</h3></div>
 </div>
-<div class="column familj">
-<h3>
-        Familj
-       </h3>
-<div id="familj-events">
-        Laddar...
-       </div>
+<div class="popup" id="eventPopup">
+<button class="popup-close" onclick="closePopup()">×</button>
+<h3 id="popupTitle"></h3>
+<p id="popupTime"></p>
+<p id="popupDesc"></p>
+<p id="popupLocation"></p>
 </div>
-</div>
-</div>
-</div>
+</div></div>
 </div>
 <!-- stänger .container -->
 <!-- Nyhetsbannern (fast längst ner på skärmen) -->
@@ -411,185 +540,366 @@
 </div>
 <script>
    // Fliksystem
-    document.querySelectorAll(".tab-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
-        document.querySelectorAll(".tab-content").forEach(tc => tc.classList.remove("active"));
-        btn.classList.add("active");
-        document.getElementById(btn.dataset.tab).classList.add("active");
-      });
-    });
-    // Klocka & Datum
-    function updateClock(){
-      const now=new Date();
-      document.getElementById("clock").innerText=now.toLocaleTimeString("sv-SE",{hour:"2-digit",minute:"2-digit"});
-      document.getElementById("date").innerText=now.toLocaleDateString("sv-SE",{weekday:"long",day:"numeric",month:"long"});
-    }
-    setInterval(updateClock,1000); updateClock();
-    // Nedräkning
-    const targetDate=new Date("2025-06-03T00:00:00");
-    function updateCountdown(){
-      const now=new Date(),diff=targetDate-now;
-      const d=Math.floor(diff/864e5),h=Math.floor(diff/36e5)%24,m=Math.floor(diff/6e4)%60;
-      document.getElementById("countdown").innerText=`${d} dagar ${h} timmar ${m} minuter kvar!`;
-    }
-    setInterval(updateCountdown,60000); updateCountdown();
-    // Väder från SMHI
-    function fetchWeather(){
-      fetch(`https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/16.7229/lat/59.0493/data.json`)
-      .then(r=>r.json()).then(data=>{
-        const fc=document.getElementById("forecast");
-        fc.innerHTML=""; const daysShown={},maxDays=3; let count=0;
-        data.timeSeries.forEach(item=>{
-          const date=new Date(item.validTime);
-          const key=date.toLocaleDateString("sv-SE",{weekday:"short",day:"numeric"});
-          const temp=item.parameters.find(p=>p.name==="t").values[0];
-          const sym=item.parameters.find(p=>p.name==="Wsymb2").values[0];
-          let icon="☀️";
-          if(sym>=3&&sym<=4) icon="🌤️";
-          else if(sym>=5&&sym<=6) icon="☁️";
-          else if(sym>=7&&sym<=9) icon="🌧️";
-          else if(sym>=10) icon="❄️";
-          if(!daysShown[key]&&date.getHours()===12){
-            daysShown[key]=true;
-            const div=document.createElement("div");
-            div.className="forecast-day";
-            div.innerHTML=`<strong>${key}</strong><br>${icon}<br>${temp}°C`;
-            fc.appendChild(div); count++;
-          }
-          if(count>=maxDays) return;
-        });
-      })
-      .catch(()=>document.getElementById("forecast").innerText="Kunde inte hämta vädret");
-    }
-    fetchWeather(); setInterval(fetchWeather,10800000);
-    // Nyheter
-    function fetchNews(){
-      fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent("https://www.svt.se/nyheter/lokalt/sormland/rss.xml")}`)
-      .then(r=>r.json()).then(data=>{
-        const nc=document.querySelector(".news-content");
-        nc.innerHTML="";
-        data.items.slice(0,5).forEach(item=>{
-          nc.innerHTML+=`📰 ${item.title} &nbsp;&nbsp;&nbsp;`;
-        });
-        fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent("https://www.ekuriren.se/rss/lokalt")}`)
-        .then(r=>r.json()).then(data=>{
-          data.items.slice(0,5).forEach(item=>{
-            nc.innerHTML+=`[EK] ${item.title} &nbsp;&nbsp;&nbsp;`;
-          });
-        });
-      })
-      .catch(()=>document.querySelector(".news-content").innerText="Kunde inte ladda nyheter");
-    }
-    fetchNews(); setInterval(fetchNews,3600000);
-    // Välkomstmeddelande
-    function updateWelcomeMessage(){
-      const hour=new Date().getHours();
-      let greet="Välkommen!";
-      if(hour<12)greet="God morgon Leiding / Nilsson!";
-      else if(hour<18)greet="God eftermiddag Leiding / Nilsson!";
-      else greet="God kväll Leiding / Nilsson!";
-      document.getElementById("welcome-message").innerText=greet;
-    }
-    updateWelcomeMessage();
-    // ToDo
-    const todoList=document.getElementById("todo-list"),newTaskInput=document.getElementById("new-task");
-    function saveTodos(){
-      localStorage.setItem("todos",JSON.stringify([...todoList.children].map(li=>({
-        text:li.querySelector('span').innerText,
-        done:li.querySelector('.circle-btn').classList.contains('checked')
-      }))));
-    }
-    function loadTodos(){
-      (JSON.parse(localStorage.getItem("todos"))||[]).forEach(item=>{
-        const li=document.createElement("li");
-        li.innerHTML=`<button class="circle-btn ${item.done?'checked':''}"></button><span>${item.text}</span><span class="remove-btn">❌</span>`;
-        todoList.appendChild(li);
-      });
-    }
-    newTaskInput.addEventListener("keypress",e=>{
-      if(e.key==="Enter"&&newTaskInput.value.trim()!=""){
-        const li=document.createElement("li");
-        li.innerHTML=`<button class="circle-btn"></button><span>${newTaskInput.value}</span><span class="remove-btn">❌</span>`;
-        todoList.appendChild(li);
-        newTaskInput.value=""; saveTodos();
-      }
-    });
-    todoList.addEventListener("click",e=>{
-      if(e.target.classList.contains("circle-btn")){
-        e.target.classList.toggle("checked"); saveTodos();
-      }
-      if(e.target.classList.contains("remove-btn")){
-        e.target.closest("li").remove(); saveTodos();
-      }
-    });
-    loadTodos();
-    // Dagliga sysslor
-    const choresContainer=document.getElementById('chores-container');
-    const children=[{name:'Maximilian',color:'lightblue'},{name:'Milou',color:'lightpink'},{name:'Molly',color:'plum'}];
-    children.forEach(c=>{
-      const div=document.createElement('div');
-      div.style.textAlign='left';
-      div.innerHTML=`<h3 style='text-align:center;'>${c.name}</h3>`;
-      const chores=['Borsta Tänderna Morgon','Borsta Håret','Kläder','Borsta Tänderna Kväll'];
-      chores.forEach(task=>{
-        const btn=document.createElement('button');
-        btn.className='circle-btn chore-circle';
-        btn.dataset.color=c.color;
-        btn.addEventListener('click',()=>{
-          btn.classList.toggle('checked');
-          btn.style.background=btn.classList.contains('checked')?c.color:'transparent';
-        });
-        const item=document.createElement('div');
-        item.style.display='flex';
-        item.style.alignItems='center';
-        item.style.margin='10px 0';
-        item.appendChild(btn);
-        item.appendChild(document.createTextNode(task));
-        div.appendChild(item);
-      });
-      choresContainer.appendChild(div);
-    });
-    setInterval(()=>{
-      const now=new Date();
-      if(now.getHours()===23&&now.getMinutes()===59){
-        document.querySelectorAll('.chore-circle').forEach(btn=>{
-          btn.style.background='transparent';
-          btn.classList.remove('checked');
-        });
-      }
-    },60000);
-    // Hämtar Google Kalender-händelser till respektive kolumn
+document.querySelectorAll(".tab-btn").forEach(btn => {
+btn.addEventListener("click", () => {
+document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+document.querySelectorAll(".tab-content").forEach(tc => tc.classList.remove("active"));
+btn.classList.add("active");
+document.getElementById(btn.dataset.tab).classList.add("active");
+});
+});
+// Klocka & Datum
+function updateClock(){
+const now=new Date();
+document.getElementById("clock").innerText=now.toLocaleTimeString("sv-SE",{hour:"2-digit",minute:"2-digit"});
+document.getElementById("date").innerText=now.toLocaleDateString("sv-SE",{weekday:"long",day:"numeric",month:"long"});
+}
+setInterval(updateClock,1000); updateClock();
+// Nedräkning
+const targetDate=new Date("2025-06-03T00:00:00");
+function updateCountdown(){
+const now=new Date(),diff=targetDate-now;
+const d=Math.floor(diff/864e5),h=Math.floor(diff/36e5)%24,m=Math.floor(diff/6e4)%60;
+document.getElementById("countdown").innerText=`${d} dagar ${h} timmar ${m} minuter kvar!`;
+}
+setInterval(updateCountdown,60000); updateCountdown();
+// Väder från SMHI
+function fetchWeather(){
+fetch(`https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/16.7229/lat/59.0493/data.json`)
+.then(r=>r.json()).then(data=>{
+const fc=document.getElementById("forecast");
+fc.innerHTML=""; const daysShown={},maxDays=3; let count=0;
+data.timeSeries.forEach(item=>{
+const date=new Date(item.validTime);
+const key=date.toLocaleDateString("sv-SE",{weekday:"short",day:"numeric"});
+const temp=item.parameters.find(p=>p.name==="t").values[0];
+const sym=item.parameters.find(p=>p.name==="Wsymb2").values[0];
+let icon="☀️";
+if(sym>=3&&sym<=4) icon="🌤️";
+else if(sym>=5&&sym<=6) icon="☁️";
+else if(sym>=7&&sym<=9) icon="🌧️";
+else if(sym>=10) icon="❄️";
+if(!daysShown[key]&&date.getHours()===12){
+daysShown[key]=true;
+const div=document.createElement("div");
+div.className="forecast-day";
+div.innerHTML=`<strong>${key}</strong><br>${icon}<br>${temp}°C`;
+fc.appendChild(div); count++;
+}
+if(count>=maxDays) return;
+});
+})
+.catch(()=>document.getElementById("forecast").innerText="Kunde inte hämta vädret");
+}
+fetchWeather(); setInterval(fetchWeather,10800000);
+// Nyheter
+function fetchNews(){
+fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent("https://www.svt.se/nyheter/lokalt/sormland/rss.xml")}`)
+.then(r=>r.json()).then(data=>{
+const nc=document.querySelector(".news-content");
+nc.innerHTML="";
+data.items.slice(0,5).forEach(item=>{
+nc.innerHTML+=`📰 ${item.title} &nbsp;&nbsp;&nbsp;`;
+});
+fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent("https://www.ekuriren.se/rss/lokalt")}`)
+.then(r=>r.json()).then(data=>{
+data.items.slice(0,5).forEach(item=>{
+nc.innerHTML+=`[EK] ${item.title} &nbsp;&nbsp;&nbsp;`;
+});
+});
+})
+.catch(()=>document.querySelector(".news-content").innerText="Kunde inte ladda nyheter");
+}
+fetchNews(); setInterval(fetchNews,3600000);
+// Välkomstmeddelande
+function updateWelcomeMessage(){
+const hour=new Date().getHours();
+let greet="Välkommen!";
+if(hour<12)greet="God morgon Leiding / Nilsson!";
+else if(hour<18)greet="God eftermiddag Leiding / Nilsson!";
+else greet="God kväll Leiding / Nilsson!";
+document.getElementById("welcome-message").innerText=greet;
+}
+updateWelcomeMessage();
+// ToDo
+const todoList=document.getElementById("todo-list"),newTaskInput=document.getElementById("new-task");
+function saveTodos(){
+localStorage.setItem("todos",JSON.stringify([...todoList.children].map(li=>({
+text:li.querySelector('span').innerText,
+done:li.querySelector('.circle-btn').classList.contains('checked')
+}))));
+}
+function loadTodos(){
+(JSON.parse(localStorage.getItem("todos"))||[]).forEach(item=>{
+const li=document.createElement("li");
+li.innerHTML=`<button class="circle-btn ${item.done?'checked':''}"></button><span>${item.text}</span><span class="remove-btn">❌</span>`;
+todoList.appendChild(li);
+});
+}
+newTaskInput.addEventListener("keypress",e=>{
+if(e.key==="Enter"&&newTaskInput.value.trim()!=""){
+const li=document.createElement("li");
+li.innerHTML=`<button class="circle-btn"></button><span>${newTaskInput.value}</span><span class="remove-btn">❌</span>`;
+todoList.appendChild(li);
+newTaskInput.value=""; saveTodos();
+}
+});
+todoList.addEventListener("click",e=>{
+if(e.target.classList.contains("circle-btn")){
+e.target.classList.toggle("checked"); saveTodos();
+}
+if(e.target.classList.contains("remove-btn")){
+e.target.closest("li").remove(); saveTodos();
+}
+});
+loadTodos();
+// Dagliga sysslor
+const choresContainer=document.getElementById('chores-container');
+const children=[{name:'Maximilian',color:'lightblue'},{name:'Milou',color:'lightpink'},{name:'Molly',color:'plum'}];
+children.forEach(c=>{
+const div=document.createElement('div');
+div.style.textAlign='left';
+div.innerHTML=`<h3 style='text-align:center;'>${c.name}</h3>`;
+const chores=['Borsta Tänderna Morgon','Borsta Håret','Kläder','Borsta Tänderna Kväll'];
+chores.forEach(task=>{
+const btn=document.createElement('button');
+btn.className='circle-btn chore-circle';
+btn.dataset.color=c.color;
+btn.addEventListener('click',()=>{
+btn.classList.toggle('checked');
+btn.style.background=btn.classList.contains('checked')?c.color:'transparent';
+});
+const item=document.createElement('div');
+item.style.display='flex';
+item.style.alignItems='center';
+item.style.margin='10px 0';
+item.appendChild(btn);
+item.appendChild(document.createTextNode(task));
+div.appendChild(item);
+});
+choresContainer.appendChild(div);
+});
+setInterval(()=>{
+const now=new Date();
+if(now.getHours()===23&&now.getMinutes()===59){
+document.querySelectorAll('.chore-circle').forEach(btn=>{
+btn.style.background='transparent';
+btn.classList.remove('checked');
+});
+}
+},60000);
+// Hämtar Google Kalender-händelser till respektive kolumn
 const apiKey = "AIzaSyBXJ9puCyi1PmtuelhHKf9tuUVW0nxXipo";
-    const calendarMap = {
-      "ad91c4e3564b7bb204982dc8609c5072d822c917edf6bb6a2398f3bb711ffa54@group.calendar.google.com": "emma-events",
-      "family03354164418688114432@group.calendar.google.com": "familj-events",
-      "0f3167ad3226259bfd6e201077a8989fbd70419e44fb024a9230d9e20983cbfd@group.calendar.google.com": "max-events"
-    };
-    async function fetchAndDisplay(calendarId, containerId) {
-      const now = new Date().toISOString();
-      const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events?key=${apiKey}&timeMin=${now}&maxResults=10&orderBy=startTime&singleEvents=true`;
-      try {
-        const res = await fetch(url);
-        const data = await res.json();
-        const container = document.getElementById(containerId);
-        if (!data.items || data.items.length === 0) {
-          container.innerHTML = "<p>Inga händelser.</p>";
-          return;
-        }
-        const eventsHTML = data.items.map(event => {
-          const date = new Date(event.start.dateTime || event.start.date);
-          const formatted = date.toLocaleString("sv-SE", { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
-          return `<div class="event"><div class="event-date">${formatted}</div><div class="event-summary">${event.summary || "Namnlös händelse"}</div></div>`;
-        }).join("");
-        container.innerHTML = eventsHTML;
-      } catch (e) {
-        document.getElementById(containerId).innerHTML = "<p>Fel vid hämtning.</p>";
-      }
-    }
-    for (const [id, container] of Object.entries(calendarMap)) {
-      fetchAndDisplay(id, container);
-    }
+const calendarMap = {
+"ad91c4e3564b7bb204982dc8609c5072d822c917edf6bb6a2398f3bb711ffa54@group.calendar.google.com": "emma-events",
+"family03354164418688114432@group.calendar.google.com": "familj-events",
+"0f3167ad3226259bfd6e201077a8989fbd70419e44fb024a9230d9e20983cbfd@group.calendar.google.com": "max-events"
+};
+async function fetchAndDisplay(calendarId, containerId) {
+const now = new Date().toISOString();
+const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events?key=${apiKey}&timeMin=${now}&maxResults=10&orderBy=startTime&singleEvents=true`;
+try {
+const res = await fetch(url);
+const data = await res.json();
+const container = document.getElementById(containerId);
+if (!data.items || data.items.length === 0) {
+container.innerHTML = "<p>Inga händelser.</p>";
+return;
+}
+const eventsHTML = data.items.map(event => {
+const date = new Date(event.start.dateTime || event.start.date);
+const formatted = date.toLocaleString("sv-SE", { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+return `<div class="event"><div class="event-date">${formatted}</div><div class="event-summary">${event.summary || "Namnlös händelse"}</div></div>`;
+}).join("");
+container.innerHTML = eventsHTML;
+} catch (e) {
+document.getElementById(containerId).innerHTML = "<p>Fel vid hämtning.</p>";
+}
+}
+for (const [id, container] of Object.entries(calendarMap)) {
+fetchAndDisplay(id, container);
+}
   </script>
+<script>
+   async function fetchPollenReport() {
+const content = document.getElementById("pollen-content");
+const timestamp = document.getElementById("pollen-timestamp");
+const dateBox = document.getElementById("pollen-dates");
+const pollenMap = {
+"2a2a2a2a-2a2a-4a2a-aa2a-2a313a323236": { name: "Al", icon: "🌲" },
+"2a2a2a2a-2a2a-4a2a-aa2a-2a313a323533": { name: "Malörtsambrosia", icon: "🧪" },
+"2a2a2a2a-2a2a-4a2a-aa2a-2a313a323530": { name: "Gråbo", icon: "🪴" },
+"2a2a2a2a-2a2a-4a2a-aa2a-2a313a323332": { name: "Björk", icon: "🌳" },
+"2a2a2a2a-2a2a-4a2a-aa2a-2a313a323233": { name: "Hassel", icon: "🍂" },
+"2a2a2a2a-2a2a-4a2a-aa2a-2a313a323335": { name: "Bok", icon: "🌿" },
+"2a2a2a2a-2a2a-4a2a-aa2a-2a313a323433": { name: "Gräs", icon: "🍃" },
+"2a2a2a2a-2a2a-4a2a-aa2a-2a313a323337": { name: "Ek", icon: "🌰" },
+"2a2a2a2a-2a2a-4a2a-aa2a-2a313a323330": { name: "Sälg och viden", icon: "🐝" },
+"2a2a2a2a-2a2a-4a2a-aa2a-2a313a323331": { name: "Alm", icon: "🌾" }
+};
+const levelMap = {
+0: { label: "Inga halter", percent: 0, color: "#ccc" },
+1: { label: "Låga", percent: 25, color: "#7ed957" },
+2: { label: "Måttliga", percent: 60, color: "#ffa500" },
+3: { label: "Höga", percent: 85, color: "#ff4500" },
+4: { label: "Mycket höga", percent: 100, color: "#8b0000" }
+};
+try {
+const res = await fetch("https://api.allorigins.win/raw?url=" + encodeURIComponent("https://api.pollenrapporten.se/v1/forecasts?region_id=2a2a2a2a-2a2a-4a2a-aa2a-2a2a303a3134&current=true"));
+const data = await res.json();
+if (!data.items || data.items.length === 0 || !data.items[0].levelSeries || !data.items[0].startDate || !data.items[0].endDate) {
+content.innerHTML = "Ingen prognos hittades.";
+return;
+}
+let html = "";
+let shown = {};
+data.items[0].levelSeries.forEach(entry => {
+const pollen = pollenMap[entry.pollenId];
+const level = levelMap[entry.level];
+if (!pollen || !level || entry.level === 0 || shown[entry.pollenId]) return;
+shown[entry.pollenId] = true;
+html += `
+<div class="pollen-meter" style="display:inline-block;text-align:center;margin:10px;width:90px;">
+<svg viewBox="0 0 36 36" style="width:70px;height:70px;transform:rotate(-90deg);">
+<path d="M18 2 a 16 16 0 1 1 0 32 a 16 16 0 1 1 0 -32"
+fill="none" stroke="#eee" stroke-width="3"/>
+<path d="M18 2 a 16 16 0 1 1 0 32 a 16 16 0 1 1 0 -32"
+fill="none" stroke="${level.color}" stroke-width="3"
+stroke-linecap="round" stroke-dasharray="${level.percent},100"/>
+</svg>
+<div class="pollen-icon" style="font-size:1.4em;">${pollen.icon}</div>
+<div class="pollen-label" style="font-weight:bold;">${pollen.name}</div>
+<div class="pollen-level" style="font-size:0.8em;color:#ccc;">${level.label}</div>
+</div>`;
+});
+content.innerHTML = html || "Ingen information tillgänglig.";
+const startDate = new Date(data.items[0].startDate);
+const endDate = new Date(data.items[0].endDate);
+const formatter = new Intl.DateTimeFormat("sv-SE", { day: "numeric", month: "long" });
+if (dateBox) {
+dateBox.innerText = "Gäller: " + formatter.format(startDate) + " – " + formatter.format(endDate);
+}
+const now = new Date();
+timestamp.innerText = "Senast uppdaterad: " + now.toLocaleString("sv-SE");
+} catch (error) {
+content.innerHTML = "Fel vid hämtning av pollenprognos.";
+}
+}
+fetchPollenReport();
+  </script>
+<script src="https://unpkg.com/lucide@latest"></script><script>
+lucide.createIcons();
+const buttons = document.querySelectorAll('.tab-button');
+const contents = document.querySelectorAll('.tab-content');
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    buttons.forEach(b => b.classList.remove('active'));
+    contents.forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    const tabId = btn.dataset.tab;
+    const tabSection = document.getElementById(tabId);
+    if (tabSection) tabSection.classList.add('active');
+  });
+});
+</script>
+<style>
+  .agenda-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  .agenda-column {
+    border-radius: 1rem;
+    padding: 1rem;
+    backdrop-filter: blur(8px);
+    transition: transform 0.2s ease;
+    cursor: pointer;
+  }
+  .agenda-column:hover {
+    transform: scale(1.02);
+  }
+  .agenda-column h3 {
+    margin-top: 0;
+    font-size: 1.2rem;
+  }
+  .event {
+    margin-bottom: 1rem;
+    color: #111;
+  }
+  .popup {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 1000;
+    max-width: 90%;
+  }
+  .popup.active {
+    display: block;
+  }
+  .popup-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+</style>
+<script>
+  const API_KEY = "AIzaSyBXJ9puCyi1PmtuelhHKf9tuUVW0nxXipo";
+  const calendarIds = {
+    emma: "ad91c4e3564b7bb204982dc8609c5072d822c917edf6bb6a2398f3bb711ffa54@group.calendar.google.com",
+    maximilian: "0f3167ad3226259bfd6e201077a8989fbd70419e44fb024a9230d9e20983cbfd@group.calendar.google.com",
+    familj: "family03354164418688114432@group.calendar.google.com",
+    dennis: "leiding.nilsson@gmail.com",
+    milou: "6edb28b15afd62fd8c51edc9482a49d06b8c58c096a0e2c3ca76bd64034e8e56@group.calendar.google.com",
+    molly: "a306a7a3268a9ed9a607dae0aeccb20e4a5c9ab4341c202fd0bfb923b4d06e26@group.calendar.google.com"
+  };
+
+  async function fetchEvents(calendarId, maxResults = 5) {
+    const now = new Date().toISOString();
+    const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events?key=${API_KEY}&timeMin=${now}&maxResults=${maxResults}&singleEvents=true&orderBy=startTime`;
+    const res = await fetch(url);
+    const data = await res.json();
+    return data.items || [];
+  }
+
+  function openPopup(title, time, desc, location) {
+    document.getElementById("popupTitle").textContent = title;
+    document.getElementById("popupTime").textContent = time;
+    document.getElementById("popupDesc").textContent = desc || "Ingen beskrivning";
+    document.getElementById("popupLocation").textContent = location || "";
+    document.getElementById("eventPopup").classList.add("active");
+  }
+
+  function closePopup() {
+    document.getElementById("eventPopup").classList.remove("active");
+  }
+
+  async function loadAgenda() {
+    for (const [key, calendarId] of Object.entries(calendarIds)) {
+      const container = document.getElementById(key);
+      const events = await fetchEvents(calendarId);
+      events.forEach(event => {
+        const start = event.start.dateTime || event.start.date;
+        const startDate = new Date(start);
+        const dateStr = startDate.toLocaleDateString("sv-SE", { weekday: 'short', day: 'numeric', month: 'short' });
+        const timeStr = event.start.dateTime ? startDate.toLocaleTimeString("sv-SE", { hour: '2-digit', minute: '2-digit' }) : "Heldag";
+        const div = document.createElement("div");
+        div.classList.add("event");
+        div.innerHTML = `<strong>${dateStr}</strong>: ${event.summary || "(Namnlös)"}`;
+        div.addEventListener("click", () => openPopup(event.summary, `${dateStr} ${timeStr}`, event.description, event.location));
+        container.appendChild(div);
+      });
+    }
+  }
+  window.addEventListener("DOMContentLoaded", loadAgenda);
+</script>
 </body>
 </html>
