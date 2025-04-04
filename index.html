@@ -38,7 +38,7 @@ gap:10px;
 flex-wrap:wrap;
 margin-bottom:20px;
 }
-.tab-button {
+.tab-btn {
 background:rgba(255,255,255,0.2);
 border:none;
 padding:10px 20px;
@@ -47,7 +47,7 @@ cursor:pointer;
 font-weight:bold;
 transition:background 0.3s;
 }
-.tab-button.active {
+.tab-btn.active {
 background:rgba(255,255,255,0.4);
 }
 .tab-content {
@@ -254,7 +254,7 @@ box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 margin-bottom: 30px;
 overflow-x: auto;
 }
-.tab-button {
+.tab-btn {
 padding: 10px 20px;
 border: none;
 border-radius: 999px;
@@ -265,14 +265,14 @@ cursor: pointer;
 transition: background 0.3s, transform 0.2s;
 white-space: nowrap;
 }
-.tab-button:hover {
+.tab-btn:hover {
 transform: translateY(-2px);
 }
-.tab-button.active[data-tab="start"] { background-color: #add8e6; color: black; }
-.tab-button.active[data-tab="calendar"] { background-color: #c3f7c3; color: black; }
-.tab-button.active[data-tab="todo"] { background-color: #fff8b5; color: black; }
-.tab-button.active[data-tab="chores"] { background-color: #ffd5ec; color: black; }
-.tab-button.active[data-tab="agenda"] { background-color: #e6ccff; color: black; }
+.tab-btn.active[data-tab="start"] { background-color: #add8e6; color: black; }
+.tab-btn.active[data-tab="calendar"] { background-color: #c3f7c3; color: black; }
+.tab-btn.active[data-tab="todo"] { background-color: #fff8b5; color: black; }
+.tab-btn.active[data-tab="chores"] { background-color: #ffd5ec; color: black; }
+.tab-btn.active[data-tab="agenda"] { background-color: #e6ccff; color: black; }
 .pollen-meter {
 display: inline-block;
 text-align: center;
@@ -416,24 +416,6 @@ body, .widget, .agenda-column, .agenda-column ul li, .agenda-column h3,
   background: rgba(0, 0, 0, 0.05);
   color: #222;
 }
-
-.widget {
-  opacity: 0;
-  transform: translateY(10px);
-  animation: fadeInUp 0.6s ease forwards;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.widget:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 </style>
 </head>
 <body>
@@ -450,8 +432,6 @@ body, .widget, .agenda-column, .agenda-column ul li, .agenda-column h3,
 <button class="tab-button" data-tab="chores" style="--active-color: #ebfbe3;">
 <i data-lucide="broom"></i><span>Sysslor</span>
 </button>
-<button class="tab-button" data-tab="schema" style="--active-color: #f0e0ff;"><i data-lucide="calendar-range"></i><span>Schema</span></button>
-<button class="tab-button" data-tab="alarm"><i data-lucide="alarm-clock"></i><span>Alarm</span></button>
 <button class="tab-button" data-tab="agenda" style="--active-color: #fdf4e3;">
 <i data-lucide="list-todo"></i><span>Agenda</span>
 </button>
@@ -551,50 +531,6 @@ body, .widget, .agenda-column, .agenda-column ul li, .agenda-column h3,
 <p id="popupLocation"></p>
 </div>
 </div></div>
-
-<div class="tab-content" id="schema">
-  <div class="widget">
-    <h2>Schema – Skola & Arbete</h2>
-    <form id="schema-form">
-      <div class="input-group"><label>Person</label>
-        <select id="person" required>
-          <option>Emma</option><option>Max</option><option>Milou</option><option>Molly</option><option>Dennis</option>
-        </select>
-      </div>
-      <div class="input-group"><label>Typ</label>
-        <select id="typ" required><option>Skola</option><option>Arbete</option></select>
-      </div>
-      <div class="input-group"><label>Dag</label>
-        <select id="dag" required>
-          <option>Måndag</option><option>Tisdag</option><option>Onsdag</option><option>Torsdag</option><option>Fredag</option>
-        </select>
-      </div>
-      <div class="input-group"><label>Starttid</label><input type="time" id="starttid" required></div>
-      <div class="input-group"><label>Sluttid</label><input type="time" id="sluttid" required></div>
-      <button type="submit">Lägg till</button>
-    </form>
-    <ul class="schedule-list" id="schema-list"></ul>
-  </div>
-</div>
-
-<div class="tab-content" id="alarm">
-  <div class="widget">
-    <h2>Ställ Alarm</h2>
-    <form id="alarm-form">
-      <div class="input-group">
-        <label for="alarm-time">Tid</label>
-        <input type="time" id="alarm-time" required />
-      </div>
-      <div class="input-group">
-        <label for="alarm-message">Meddelande</label>
-        <input type="text" id="alarm-message" required />
-      </div>
-      <button type="submit">Lägg till Alarm</button>
-    </form>
-    <ul class="alarm-list" id="alarm-list"></ul>
-    <button id="test-alarm" style="margin-top: 10px;">🔊 Testa Alarm</button>
-  </div>
-</div>
 </div>
 <!-- stänger .container -->
 <!-- Nyhetsbannern (fast längst ner på skärmen) -->
@@ -605,9 +541,9 @@ body, .widget, .agenda-column, .agenda-column ul li, .agenda-column h3,
 </div>
 <script>
    // Fliksystem
-document.querySelectorAll(".tab-button").forEach(btn => {
+document.querySelectorAll(".tab-btn").forEach(btn => {
 btn.addEventListener("click", () => {
-document.querySelectorAll(".tab-button").forEach(b => b.classList.remove("active"));
+document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
 document.querySelectorAll(".tab-content").forEach(tc => tc.classList.remove("active"));
 btn.classList.add("active");
 document.getElementById(btn.dataset.tab).classList.add("active");
@@ -915,24 +851,6 @@ buttons.forEach(btn => {
     border: none;
     cursor: pointer;
   }
-
-.widget {
-  opacity: 0;
-  transform: translateY(10px);
-  animation: fadeInUp 0.6s ease forwards;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.widget:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 </style>
 <script>
   const API_KEY = "AIzaSyBXJ9puCyi1PmtuelhHKf9tuUVW0nxXipo";
@@ -984,218 +902,5 @@ buttons.forEach(btn => {
   }
   window.addEventListener("DOMContentLoaded", loadAgenda);
 </script>
-<script>
-67ed1810d8508191b48b564084fbd5ff
-</script>
 </body>
 </html>
-
-<script>
-
-function renderSchema() {
-  const weekdays = ["Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag"];
-  const colors = {
-    Emma: "#ffeedb",
-    Max: "#e3fdd9",
-    Milou: "#ffd8e6",
-    Molly: "#f1e5ff",
-    Dennis: "#e0f0ff"
-  };
-  schemaList.innerHTML = '';
-  const sorted = [...scheman].sort((a, b) => {
-    const dayA = weekdays.indexOf(a.dag);
-    const dayB = weekdays.indexOf(b.dag);
-    if (dayA !== dayB) return dayA - dayB;
-    return a.person.localeCompare(b.person);
-  });
-  sorted.forEach((item, i) => {
-    const li = document.createElement('li');
-    li.style.backgroundColor = colors[item.person] || '#fff';
-    li.style.padding = '10px';
-    li.style.borderRadius = '10px';
-    li.style.marginBottom = '6px';
-    li.innerHTML = `<strong>${item.person}</strong> – ${item.typ} (${item.dag})<br><small>${item.start} till ${item.slut}</small> <span class='remove-btn' data-index='${scheman.indexOf(item)}'>❌</span>`;
-    schemaList.appendChild(li);
-  });
-}
-// ... tidigare kod bibehålls
-
-// ... tidigare kod bibehålls
-
-// === FULLSTÄNDIG SCRIPTDEL FÖR SCHEMA & ALARM ===
-const schemaForm = document.getElementById("schema-form");
-const schemaContainer = document.getElementById("schema-list");
-let scheman = JSON.parse(localStorage.getItem("schema") || "[]");
-
-function renderSchema() {
-  const weekdays = ["Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag"];
-  const colors = {
-    Emma: "#ffeedb",
-    Max: "#e3fdd9",
-    Milou: "#ffd8e6",
-    Molly: "#f1e5ff",
-    Dennis: "#e0f0ff"
-  };
-
-  schemaContainer.innerHTML = '';
-  const schemaGrid = document.createElement("div");
-  schemaGrid.style.display = "grid";
-  schemaGrid.style.gridTemplateColumns = "repeat(5, 1fr)";
-  schemaGrid.style.gap = "10px";
-
-  weekdays.forEach(day => {
-    const col = document.createElement("div");
-    col.innerHTML = `<h3 style='text-align:center;'>${day}</h3>`;
-    col.style.background = "rgba(255,255,255,0.7)";
-    col.style.borderRadius = "12px";
-    col.style.padding = "10px";
-    col.style.minHeight = "120px";
-    const dayItems = scheman.filter(s => s.dag === day);
-    dayItems.sort((a, b) => a.person.localeCompare(b.person)).forEach((item, i) => {
-      const div = document.createElement("div");
-      div.style.backgroundColor = colors[item.person] || '#fff';
-      div.style.padding = '6px';
-      div.style.borderRadius = '8px';
-      div.style.marginBottom = '4px';
-      div.innerHTML = `<strong>${item.person}</strong> – ${item.typ}<br><small>${item.start}–${item.slut}</small> <span class='remove-btn' data-index='${scheman.indexOf(item)}'>❌</span>`;
-      col.appendChild(div);
-    });
-    schemaGrid.appendChild(col);
-  });
-
-  schemaContainer.appendChild(schemaGrid);
-}
-
-schemaForm.addEventListener("submit", e => {
-  e.preventDefault();
-  scheman.push({
-    person: person.value,
-    typ: typ.value,
-    dag: dag.value,
-    start: starttid.value,
-    slut: sluttid.value
-  });
-  localStorage.setItem("schema", JSON.stringify(scheman));
-  renderSchema();
-  schemaForm.reset();
-});
-
-schemaContainer.addEventListener("click", e => {
-  if (e.target.classList.contains("remove-btn")) {
-    scheman.splice(e.target.dataset.index, 1);
-    localStorage.setItem("schema", JSON.stringify(scheman));
-    renderSchema();
-  }
-});
-
-renderSchema();
-
-// === ALARMFUNKTION ===
-const alarmPopup = document.createElement("div");
-alarmPopup.className = "alarm-popup";
-alarmPopup.style.position = "fixed";
-alarmPopup.style.bottom = "20px";
-alarmPopup.style.right = "20px";
-alarmPopup.style.padding = "15px";
-alarmPopup.style.background = "#fff3cd";
-alarmPopup.style.border = "1px solid #ffeeba";
-alarmPopup.style.borderRadius = "10px";
-alarmPopup.style.boxShadow = "0 0 10px rgba(0,0,0,0.1)";
-alarmPopup.style.display = "none";
-document.body.appendChild(alarmPopup);
-
-let alarms = JSON.parse(localStorage.getItem("alarms") || "[]");
-const synth = window.speechSynthesis;
-
-function triggerAlarm(message) {
-  alarmPopup.textContent = `⏰ ${message}`;
-  alarmPopup.style.display = "block";
-  if (synth && typeof SpeechSynthesisUtterance !== "undefined") {
-    const voices = synth.getVoices();
-    const swedishVoice = voices.find(v => v.lang === "sv-SE");
-    const utterance = new SpeechSynthesisUtterance(message);
-    utterance.voice = swedishVoice || null;
-    utterance.lang = "sv-SE";
-    utterance.volume = 1;
-    utterance.rate = 1;
-    utterance.pitch = 1;
-    synth.cancel();
-    synth.speak(utterance);
-  }
-  if ("vibrate" in navigator) navigator.vibrate([200, 100, 200]);
-  setTimeout(() => alarmPopup.style.display = "none", 7000);
-}
-
-setInterval(() => {
-  const now = new Date();
-  const timeNow = now.toTimeString().slice(0,5);
-  alarms.forEach((alarm, index) => {
-    if (alarm.time === timeNow) {
-      triggerAlarm(alarm.message);
-    }
-  });
-}, 10000);
-
-// === ALARM-FLIKEN ===
-const alarmTab = document.createElement("div");
-alarmTab.className = "tab-content";
-alarmTab.id = "alarm";
-alarmTab.innerHTML = `
-  <div class="widget">
-    <h2>Ställ Alarm</h2>
-    <form id="alarm-form">
-      <div class="input-group">
-        <label for="alarm-time">Tid</label>
-        <input type="time" id="alarm-time" required />
-      </div>
-      <div class="input-group">
-        <label for="alarm-message">Meddelande</label>
-        <input type="text" id="alarm-message" required />
-      </div>
-      <button type="submit">Lägg till Alarm</button>
-    </form>
-    <ul class="alarm-list" id="alarm-list"></ul>
-    <button id="test-alarm" style="margin-top: 10px;">🔊 Testa Alarm</button>
-  </div>
-`;
-document.querySelector(".container").appendChild(alarmTab);
-
-const alarmForm = document.getElementById("alarm-form");
-const alarmList = document.getElementById("alarm-list");
-const testAlarmBtn = document.getElementById("test-alarm");
-
-testAlarmBtn.addEventListener("click", () => {
-  triggerAlarm("Detta är ett test alarm!");
-});
-
-function renderAlarms() {
-  alarmList.innerHTML = "";
-  alarms.forEach((alarm, i) => {
-    const li = document.createElement("li");
-    li.innerHTML = `${alarm.time} – ${alarm.message} <span class='remove-btn' data-index='${i}'>❌</span>`;
-    alarmList.appendChild(li);
-  });
-}
-
-alarmForm.addEventListener("submit", e => {
-  e.preventDefault();
-  const time = document.getElementById("alarm-time").value;
-  const message = document.getElementById("alarm-message").value;
-  alarms.push({ time, message });
-  localStorage.setItem("alarms", JSON.stringify(alarms));
-  renderAlarms();
-  alarmForm.reset();
-});
-
-alarmList.addEventListener("click", e => {
-  if (e.target.classList.contains("remove-btn")) {
-    alarms.splice(e.target.dataset.index, 1);
-    localStorage.setItem("alarms", JSON.stringify(alarms));
-    renderAlarms();
-  }
-});
-
-renderAlarms();
-
-// ... resterande kod
-</script>
