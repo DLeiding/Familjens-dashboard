@@ -416,9 +416,74 @@ body, .widget, .agenda-column, .agenda-column ul li, .agenda-column h3,
   background: rgba(0, 0, 0, 0.05);
   color: #222;
 }
+
+/* Fade-in and pop effects */
+.fade-in {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+  animation-fill-mode: forwards;
+}
+animation-fill-mode: forwards;
+.fade-in {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+  animation-fill-mode: forwards;
+} 
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.tab-button:hover, .circle-btn:hover, .agenda-column:hover, .event:hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transform: scale(1.03);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+
+/* Dark Mode Support */
+body.dark-mode {
+  background: linear-gradient(to bottom right, #2c2c2c, #1c1c1c);
+  color: #f0f0f0;
+}
+body.dark-mode .widget,
+body.dark-mode .agenda-column,
+body.dark-mode .news-bar,
+body.dark-mode .popup {
+  background: rgba(40, 40, 40, 0.8) !important;
+  color: #f0f0f0 !important;
+}
+body.dark-mode .tab-button,
+body.dark-mode .tab-btn {
+  background: rgba(255, 255, 255, 0.05);
+  color: #ddd;
+}
+body.dark-mode .tab-button.active,
+body.dark-mode .tab-btn.active {
+  background: #444;
+  color: #fff;
+}
+body.dark-mode .circle-btn.checked {
+  background: limegreen;
+}
+body.dark-mode .today-event {
+  background-color: rgba(76, 175, 80, 0.3);
+}
+
 </style>
 </head>
 <body>
+
+<button id="darkModeToggle" style="position: fixed; top: 10px; right: 10px; z-index: 1000; background: #333; color: #fff; border: none; padding: 8px 12px; border-radius: 8px; cursor: pointer;">
+🌓 Tema
+</button>
+
 <nav class="menu">
 <button class="tab-button active" data-tab="start" style="--active-color: #e9f0ff;">
 <i data-lucide="home"></i><span>Start</span>
@@ -441,7 +506,7 @@ body, .widget, .agenda-column, .agenda-column ul li, .agenda-column h3,
 </h2>
 <div class="tab-content active" id="start">
 <div class="top-widgets">
-<div class="widget" style="flex:1;min-width:280px; border-left: 6px solid #add8e6; background: rgba(255,255,255,0.05);">
+<div class="widget fade-in" style="flex:1;min-width:280px; border-left: 6px solid #add8e6; background: rgba(255,255,255,0.05); animation-delay: 0s;">
 <h2>
        Klocka &amp; Datum
       </h2>
@@ -450,7 +515,7 @@ body, .widget, .agenda-column, .agenda-column ul li, .agenda-column h3,
 <p id="date">
 </p>
 </div>
-<div class="widget" style="flex:1;min-width:280px; border-left: 6px solid #add8e6; background: rgba(255,255,255,0.05);">
+<div class="widget fade-in" style="flex:1;min-width:280px; border-left: 6px solid #add8e6; background: rgba(255,255,255,0.05); animation-delay: 0s;">
 <h2>
        Väder - Malmköping
       </h2>
@@ -459,7 +524,7 @@ body, .widget, .agenda-column, .agenda-column ul li, .agenda-column h3,
       </div>
 </div>
 </div>
-<div class="widget" id="pollen-widget" style="border-left: 6px solid #FFB6C1;">
+<div class="widget fade-in" id="pollen-widget" style="border-left: 6px solid #FFB6C1; animation-delay: 0.3s;">
 <h2>
       Pollenprognos – Eskilstuna
      </h2>
@@ -475,7 +540,7 @@ body, .widget, .agenda-column, .agenda-column ul li, .agenda-column h3,
       Uppdateras automatiskt när ny prognos finns tillgänglig.
      </div>
 </div>
-<div class="widget" style="border-left: 6px solid #add8e6; background: rgba(255,255,255,0.05);">
+<div class="widget fade-in" style="border-left: 6px solid #add8e6; background: rgba(255,255,255,0.05); animation-delay: 0.45s;">
 <h2>
       Spanien
      </h2>
@@ -484,7 +549,7 @@ body, .widget, .agenda-column, .agenda-column ul li, .agenda-column h3,
 </div>
 </div>
 <div class="tab-content" id="calendar">
-<div class="widget" style="border-left: 6px solid #b2f2bb; background: rgba(255,255,255,0.05);">
+<div class="widget fade-in" style="border-left: 6px solid #b2f2bb; background: rgba(255,255,255,0.05);">
 <h2>
       Kalender
      </h2>
@@ -493,7 +558,7 @@ body, .widget, .agenda-column, .agenda-column ul li, .agenda-column h3,
 </div>
 </div>
 <div class="tab-content" id="todo">
-<div class="widget" style="border-left: 6px solid #fff6a5; background: rgba(255,255,255,0.05);">
+<div class="widget fade-in" style="border-left: 6px solid #fff6a5; background: rgba(255,255,255,0.05);">
 <h2>
       Att göra
      </h2>
@@ -503,7 +568,7 @@ body, .widget, .agenda-column, .agenda-column ul li, .agenda-column h3,
 </div>
 </div>
 <div class="tab-content" id="chores">
-<div class="widget" style="border-left: 6px solid #ffcce0; background: rgba(255,255,255,0.05);">
+<div class="widget fade-in" style="border-left: 6px solid #ffcce0; background: rgba(255,255,255,0.05);">
 <h2>
       Dagliga Sysslor
      </h2>
@@ -514,14 +579,14 @@ body, .widget, .agenda-column, .agenda-column ul li, .agenda-column h3,
 <div class="tab-content" id="agenda"><div id="agenda-widget-container">
 <h2 style="text-align:center;">Familjekalender – Agenda (3+3)</h2>
 <div class="agenda-grid">
-<div class="agenda-column" id="emma" style="background-color:#ffeedb;"><h3>Emma</h3></div>
-<div class="agenda-column" id="maximilian" style="background-color:#e3fdd9;"><h3>Maximilian</h3></div>
-<div class="agenda-column" id="familj" style="background-color:#ffe5e0;"><h3>Familj</h3></div>
+<div class="agenda-column fade-in" id="emma" style="background-color:#ffeedb;"><h3>Emma</h3></div>
+<div class="agenda-column fade-in" id="maximilian" style="background-color:#e3fdd9;"><h3>Maximilian</h3></div>
+<div class="agenda-column fade-in" id="familj" style="background-color:#ffe5e0;"><h3>Familj</h3></div>
 </div>
 <div class="agenda-grid" style="margin-top:1rem;">
-<div class="agenda-column" id="dennis" style="background-color:#e0f0ff;"><h3>Dennis</h3></div>
-<div class="agenda-column" id="milou" style="background-color:#ffd8e6;"><h3>Milou</h3></div>
-<div class="agenda-column" id="molly" style="background-color:#f1e5ff;"><h3>Molly</h3></div>
+<div class="agenda-column fade-in" id="dennis" style="background-color:#e0f0ff;"><h3>Dennis</h3></div>
+<div class="agenda-column fade-in" id="milou" style="background-color:#ffd8e6;"><h3>Milou</h3></div>
+<div class="agenda-column fade-in" id="molly" style="background-color:#f1e5ff;"><h3>Molly</h3></div>
 </div>
 <div class="popup" id="eventPopup">
 <button class="popup-close" onclick="closePopup()">×</button>
@@ -851,6 +916,66 @@ buttons.forEach(btn => {
     border: none;
     cursor: pointer;
   }
+
+/* Fade-in and pop effects */
+.fade-in {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+  animation-fill-mode: forwards;
+}
+animation-fill-mode: forwards;
+.fade-in {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+  animation-fill-mode: forwards;
+} 
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.tab-button:hover, .circle-btn:hover, .agenda-column:hover, .event:hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transform: scale(1.03);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+
+/* Dark Mode Support */
+body.dark-mode {
+  background: linear-gradient(to bottom right, #2c2c2c, #1c1c1c);
+  color: #f0f0f0;
+}
+body.dark-mode .widget,
+body.dark-mode .agenda-column,
+body.dark-mode .news-bar,
+body.dark-mode .popup {
+  background: rgba(40, 40, 40, 0.8) !important;
+  color: #f0f0f0 !important;
+}
+body.dark-mode .tab-button,
+body.dark-mode .tab-btn {
+  background: rgba(255, 255, 255, 0.05);
+  color: #ddd;
+}
+body.dark-mode .tab-button.active,
+body.dark-mode .tab-btn.active {
+  background: #444;
+  color: #fff;
+}
+body.dark-mode .circle-btn.checked {
+  background: limegreen;
+}
+body.dark-mode .today-event {
+  background-color: rgba(76, 175, 80, 0.3);
+}
+
 </style>
 <script>
   const API_KEY = "AIzaSyBXJ9puCyi1PmtuelhHKf9tuUVW0nxXipo";
@@ -894,13 +1019,50 @@ buttons.forEach(btn => {
         const timeStr = event.start.dateTime ? startDate.toLocaleTimeString("sv-SE", { hour: '2-digit', minute: '2-digit' }) : "Heldag";
         const div = document.createElement("div");
         div.classList.add("event");
-        div.innerHTML = `<strong>${dateStr}</strong>: ${event.summary || "(Namnlös)"}`;
+        div.innerHTML = `<strong>${dateStr}</strong>: ${event.summary || '(Namnlös)'}`;
+        if (new Date(start).toDateString() === new Date().toDateString()) {
+          div.classList.add('today-event');
+        }
         div.addEventListener("click", () => openPopup(event.summary, `${dateStr} ${timeStr}`, event.description, event.location));
         container.appendChild(div);
       });
     }
   }
   window.addEventListener("DOMContentLoaded", loadAgenda);
+</script>
+
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".widget, .agenda-column").forEach((el, i) => {
+    el.classList.add("fade-in");
+    el.style.animationDelay = `${i * 0.15}s`;
+  });
+});
+</script>
+
+
+<script>
+document.getElementById("darkModeToggle").addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+});
+</script>
+
+<script>
+document.querySelectorAll('.tab-button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const tabId = btn.dataset.tab;
+    const tab = document.getElementById(tabId);
+    if (tab) {
+      const fadeIns = tab.querySelectorAll('.fade-in');
+      fadeIns.forEach((el, i) => {
+        el.style.animation = 'none';
+        el.offsetHeight; // trigger reflow
+        el.style.animation = `fadeInUp 0.6s ease forwards`;
+        el.style.animationDelay = `${i * 0.15}s`;
+      });
+    }
+  });
+});
 </script>
 </body>
 </html>
