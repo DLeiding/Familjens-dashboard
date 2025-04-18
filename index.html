@@ -1000,10 +1000,10 @@ font-family: 'Poppins', sans-serif;
     // Sifferknappar
     document.querySelectorAll('.keypad button[data-key]').forEach(btn =>
       btn.addEventListener('click', () => {
-        if (passInput.length < 6) {
+        if (passInput.length < 4) {
           passInput.push(btn.dataset.key);
           updateDots();
-          if (passInput.length === 6) checkPass();
+          if (passInput.length === 4) checkPass(); // ändra från 4 till X hur lång kod du vill ha OBS ring chefen om du inte får till DOTS cirklar. 070 492 79 38
         }
       })
     );
