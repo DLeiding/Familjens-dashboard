@@ -726,6 +726,22 @@ font-family: 'Poppins', sans-serif;
   .calendar-iframe {
     height: 500px;
   }
+  /* Gör alla widgets full‑bredd */
+  .widget {
+    width: 100% !important;
+    margin-bottom: 15px;
+  }
+  /* Se till att start‑widgeten (id) också blir full‑bredd */
+  #today-events-widget {
+    width: 100% !important;
+  }
+
+  /* Stapla tab‑innehållet vertikalt */
+  .tab-content.active {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
 }
 
 </style>
@@ -791,7 +807,7 @@ font-family: 'Poppins', sans-serif;
     <div class="tab-content active" id="start">
         
         <!--Dagens händelser-->
-        <div class="widget" id="today-events-widget" style="border-left:6px solid white; width:50%;">
+        <div class="widget" id="today-events-widget" style="border-left:6px solid white;">
     <h2>Dagens händelser</h2>
     <div class="today-events-cards">
       <!-- JS fyller kort här -->
@@ -1479,3 +1495,4 @@ window.addEventListener('DOMContentLoaded', () => {
   </script>
 </body>
 </html>
+
