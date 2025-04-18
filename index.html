@@ -674,6 +674,60 @@ font-family: 'Poppins', sans-serif;
   font-size: 0.90rem;
   color: white;
 }
+/* iPad portrait */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  .container {
+    width: 95%;
+    max-width: 768px;
+    padding: 15px;
+  }
+  .agenda-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .today-events-cards,
+  .cards-container {
+    flex-direction: column;
+  }
+  .today-event-card,
+  .card {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  .calendar-iframe {
+    height: 400px;
+  }
+  .news-content {
+    font-size: 0.9rem;
+  }
+}
+
+/* iPad landscape */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+  .container {
+    width: 90%;
+    max-width: 1024px;
+    padding: 20px;
+  }
+  .agenda-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  .today-events-cards,
+  .cards-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .today-event-card,
+  .card {
+    flex: 1 1 calc(50% - 10px);
+  }
+  .calendar-iframe {
+    height: 500px;
+  }
+}
+
 </style>
 </head>
 <body>
